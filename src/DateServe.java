@@ -10,6 +10,7 @@ public class DateServe {
 	private int minutes;
 	private static int NationalDay = 31;
 	private static int NationalMonth = 7;
+	private static String[] dayOfWeek = { "Sunday", "Monday", "Tuesday", "Wedesday", "Thursday", "Friday", "Saturday" };
 
 	public DateServe() {
 
@@ -29,31 +30,25 @@ public class DateServe {
 
 		Calendar calendar = new GregorianCalendar(year, month, day, hour, minutes);
 
-		
 		// update a date
-	/*	calendar.set(Calendar.YEAR, year); 
-		calendar.set(Calendar.MONTH, month);
-		calendar.set(Calendar.DATE, day);
-		calendar.set(Calendar.HOUR, hour);
-		calendar.set(Calendar.MINUTE, minutes);*/
+		/*
+		 * calendar.set(Calendar.YEAR, year); calendar.set(Calendar.MONTH, month);
+		 * calendar.set(Calendar.DATE, day); calendar.set(Calendar.HOUR, hour);
+		 * calendar.set(Calendar.MINUTE, minutes);
+		 */
 
-		System.out.println("Service Date : " + sdf.format(calendar.getTime()));
-		checkIsNationalDate(day,month);
+		System.out.println("Service Date : " + sdf.format(calendar.getTime()) + dayOfWeek[calendar.get(Calendar.DAY_OF_WEEK)-1]);
+		checkIsNationalDate(day, month);
 	}
-	
+
 	public void checkIsNationalDate(int day, int month) {
-		
-		if(day == NationalDay && month == NationalMonth) {
+
+		if (day == NationalDay && month == NationalMonth) {
 			System.out.println("IS NATIONAL DAY!!");
-		}
-		else {
+		} else {
 			System.out.println("Sorry, you're not applicable for free inspection...");
 		}
-		
-		
-		
+
 	}
-	
-	
 
 }
