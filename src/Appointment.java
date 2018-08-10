@@ -8,7 +8,6 @@ public class Appointment {
 	private DateServe appDay;
 	
 	public Appointment(){
-		
 	}
 	
 	public Appointment(int hour, int minutes, DateServe appoinmentDay){
@@ -28,7 +27,6 @@ public class Appointment {
 		calendar.set( Calendar.AM_PM, Calendar.AM );
 		
 		return String.format("Service Date and Time : %s %s", sdf.format(calendar.getTime()), appDay);
-	
 	}
 	
 	

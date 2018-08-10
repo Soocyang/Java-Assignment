@@ -20,17 +20,14 @@ public class DateServe {
 		this.day = day;
 		this.month = month;
 		this.year = year;
-		
 	}
 
 	public String toString() {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
-
 		Calendar calendar = new GregorianCalendar(year, month, day);
 
 		return String.format("%s %s", dayOfWeek[calendar.get(Calendar.DAY_OF_WEEK)-1], sdf.format(calendar.getTime()));
-		
 	}
 
 	public void checkIsNationalDate(int day, int month) {
@@ -41,8 +38,6 @@ public class DateServe {
 			System.out.println("Sorry, you're not applicable for free inspection...");
 		}
 		
-		
-
 	}
 
 }
