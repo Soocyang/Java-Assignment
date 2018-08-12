@@ -6,8 +6,7 @@ public class FirstChoiceCarServices {
 
         getCustomerInfo();
 
-        // Remember to re-enable the comment below before commit
-        // getServiceDateAndTime();  //test method getService date and time
+        getServiceDateAndTime();  //test method getService date and time
 
     }
 
@@ -67,12 +66,12 @@ public class FirstChoiceCarServices {
         System.out.printf("Enter year of purchase   : ");
         year = sc.nextInt();
         sc.nextLine();    //Flushing
-        System.out.printf("Enter make               : "); //Defuk is make?
+        System.out.printf("Enter car make               : "); //Defuk is make? // Car brand
         make = sc.nextLine();
         System.out.printf("Enter car model          : ");
         model = sc.nextLine();
 
-        Name name = new Name(firstName, lastName);
+        Name name = new Name(firstName, lastName);				//Missing Name Class??
         Car car = new Car(plateNo, color, year, make, model);
         Customers customers = new Customers(name, contactNo, car);
 
