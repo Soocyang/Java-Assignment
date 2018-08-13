@@ -2,80 +2,76 @@ import java.util.Scanner;
 
 public class FirstChoiceCarServices {
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        getCustomerInfo();
+		/* getCustomerInfo(); */
 
-        getServiceDateAndTime();  //test method getService date and time
+		getServiceDateAndTime(); // test method getService date and time
 
-    }
+	}
 
-    public static void getServiceDateAndTime() {
+	public static void getServiceDateAndTime() {
 
-        Scanner scn = new Scanner(System.in);
+		Scanner scn = new Scanner(System.in);
+		int day, month, year, hour, minutes;
 
-        // Prompt User Input Date they wish to service car
-        System.out.print("Enter date: ");
-        int date = scn.nextInt();
-        System.out.print("Enter month: ");
-        int month = scn.nextInt();
-        System.out.print("Enter year: ");
-        int year = scn.nextInt();
+		// Prompt User Input Date they wish to service car
+		System.out.print("Enter date: ");
+		day = scn.nextInt();
+		System.out.print("Enter month: ");
+		month = scn.nextInt();
+		System.out.print("Enter year: ");
+		year = scn.nextInt();
+		System.out.print("Enter hour: ");
+		hour = scn.nextInt();
+		System.out.print("Enter minutes: ");
+		minutes = scn.nextInt();
 
-        // Passing date into class
-        DateServe dateOfService = new DateServe(date, month - 1, year);
+		// Pass to class
+		DateServe dateOfService = new DateServe(day, month - 1, year);
+		Appointment serviceAppoint = new Appointment(hour, minutes, dateOfService);
 
-        // First print, "date" only
-        System.out.println(dateOfService);
-        dateOfService.checkIsNationalDate(date, month); // Validate for free inspection
+		// Validate for free inspection
+		dateOfService.checkIsNationalDate(day, month);
 
-        // Prompt input Appointment Time
-        System.out.print("Enter hour: ");
-        int hour = scn.nextInt();
-        System.out.print("Enter minutes: ");
-        int minutes = scn.nextInt();
+		// Output
+		System.out.println(serviceAppoint);
+	}
 
-        // Pass to class
-        Appointment serviceAppoint = new Appointment(hour, minutes, dateOfService);
+	public static void getCustomerInfo() {
+		Scanner sc = new Scanner(System.in);
+		String firstName;
+		String lastName;
+		String contactNo;
+		String plateNo;
+		String color;
+		int year;
+		String make;
+		String model;
 
-        // Second print, the whole appointment detail Date & Time
-        System.out.println(serviceAppoint);
-    }
+		System.out.printf("Enter first name         : ");
+		firstName = sc.nextLine();
+		System.out.printf("Enter last name          : ");
+		lastName = sc.nextLine();
+		System.out.printf("Enter contact number     : ");
+		contactNo = sc.nextLine();
+		System.out.printf("Enter plate number       : ");
+		plateNo = sc.nextLine();
+		System.out.printf("Enter color of your car  : ");
+		color = sc.nextLine();
+		System.out.printf("Enter year of purchase   : ");
+		year = sc.nextInt();
+		sc.nextLine(); // Flushing
+		System.out.printf("Enter car make               : "); // Car brand
+		make = sc.nextLine();
+		System.out.printf("Enter car model          : ");
+		model = sc.nextLine();
 
-    public static void getCustomerInfo(){
-        Scanner sc = new Scanner(System.in);
-        String firstName;
-        String lastName;
-        String contactNo;
-        String plateNo;
-        String color;
-        int year;
-        String make;
-        String model;
+		Name name = new Name(firstName, lastName);
+		Car car = new Car(plateNo, color, year, make, model);
+		Customers customers = new Customers(name, contactNo, car);
 
-        System.out.printf("Enter first name         : ");
-        firstName = sc.nextLine();
-        System.out.printf("Enter last name          : ");
-        lastName = sc.nextLine();
-        System.out.printf("Enter contact number     : ");
-        contactNo = sc.nextLine();
-        System.out.printf("Enter plate number       : ");
-        plateNo = sc.nextLine();
-        System.out.printf("Enter color of your car  : ");
-        color = sc.nextLine();
-        System.out.printf("Enter year of purchase   : ");
-        year = sc.nextInt();
-        sc.nextLine();    //Flushing
-        System.out.printf("Enter car make               : "); //Defuk is make? // Car brand
-        make = sc.nextLine();
-        System.out.printf("Enter car model          : ");
-        model = sc.nextLine();
-
-        Name name = new Name(firstName, lastName);				//Missing Name Class??
-        Car car = new Car(plateNo, color, year, make, model);
-        Customers customers = new Customers(name, contactNo, car);
-
-        System.out.println(customers.toString());
-    }
+		System.out.println(customers.toString());
+	}
 
 }
