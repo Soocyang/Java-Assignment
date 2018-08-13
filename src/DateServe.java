@@ -3,6 +3,31 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class DateServe {
+	
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
+	}
+
+	public int getMonth() {
+		return month;
+	}
+
+	public void setMonth(int month) {
+		this.month = month;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+	
 	private SimpleDateFormat sdf;
 	private Calendar calendar;
 	private static int NationalDay = 31;

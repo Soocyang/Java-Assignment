@@ -29,5 +29,13 @@ public class Appointment {
 
 		return String.format("Service Date and Time : %s %s", sdf.format(calendar.getTime()), appDay);
 	}
+	
+	public void setHour(int hour) {
+		this.hour=hour;
+	}
+	
+	public void setMinutes(int minutes) {
+		this.minutes=minutes;
+	}
 
 }

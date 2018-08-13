@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.Scanner;
 
 public class FirstChoiceCarServices {
@@ -6,7 +7,10 @@ public class FirstChoiceCarServices {
 
 		/* getCustomerInfo(); */
 
-		getServiceDateAndTime(); // test method getService date and time
+		getServiceDateAndTime(); 	// test method getService date and time
+		
+		readAndStore();				//Read and Storing from file to variables/objects
+		
 
 	}
 
@@ -36,6 +40,13 @@ public class FirstChoiceCarServices {
 
 		// Output
 		System.out.println(serviceAppoint);
+
+		//Test writing into file
+		CreateFile cf = new CreateFile();
+
+		cf.openFile();
+		cf.addRecords(day, month, year, hour, minutes);
+		cf.closeFile();
 	}
 
 	public static void getCustomerInfo() {
@@ -72,6 +83,37 @@ public class FirstChoiceCarServices {
 		Customers customers = new Customers(name, contactNo, car);
 
 		System.out.println(customers.toString());
+	}
+	
+	
+	//This method is used to test file reading --> only for date and time
+	public static void readAndStore() {
+		Scanner sc;
+		try {
+			sc = new Scanner(new File("test2.txt"));
+
+			System.out.println("Reading...");
+
+			while (sc.hasNext()) {
+
+				int d = sc.nextInt();
+				int m = sc.nextInt();
+				int y = sc.nextInt();
+				int hh = sc.nextInt();
+				int min = sc.nextInt();
+
+				DateServe dateOfService = new DateServe(d, m - 1, y);
+				Appointment serviceAppoint = new Appointment(hh, min, dateOfService);
+
+				System.out.println(serviceAppoint);
+			}
+
+			sc.close();
+
+		} catch (Exception e) {
+			System.out.println("ERROR 404");
+		}
+
 	}
 
 }
