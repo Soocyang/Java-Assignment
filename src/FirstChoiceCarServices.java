@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class FirstChoiceCarServices {
@@ -8,9 +9,13 @@ public class FirstChoiceCarServices {
 		/* getCustomerInfo(); */
 
 		getServiceDateAndTime(); 	// test method getService date and time
-		
-		readAndStore();			//Read and Storing from file to variables/objects
-		
+
+		try {
+			readAndStore();			//Read and Storing from file to variables/objects
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
 		/*technician();*/
 	}
 
@@ -111,7 +116,7 @@ public class FirstChoiceCarServices {
 	
 	
 	//This method is used to test file reading --> only for date and time
-	public static void readAndStore() {
+	public static void readAndStore() throws FileNotFoundException {
 		Scanner sc;
 		try {
 			sc = new Scanner(new File("test2.txt"));
@@ -135,7 +140,7 @@ public class FirstChoiceCarServices {
 			sc.close();
 
 		} catch (Exception e) {
-			System.out.println("ERROR 404");
+			throw e;
 		}
 
 	}
