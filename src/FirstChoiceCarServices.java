@@ -1,12 +1,13 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Scanner;
 
 public class FirstChoiceCarServices {
 
 	public static void main(String[] args) {
 
-		/* getCustomerInfo(); */
+		getCustomerInfo();
+
+        /*
 
 		getServiceDateAndTime(); 	// test method getService date and time
 
@@ -16,7 +17,9 @@ public class FirstChoiceCarServices {
 			e.printStackTrace();
 		}
 
-		/*technician();*/
+		technician();
+
+		*/
 	}
 
 	public static void getServiceDateAndTime() {
@@ -54,41 +57,73 @@ public class FirstChoiceCarServices {
 		cf.closeFile();
 	}
 
-	public static void getCustomerInfo() {
-		Scanner sc = new Scanner(System.in);
-		String firstName;
-		String lastName;
-		String contactNo;
-		String plateNo;
-		String color;
-		int year;
-		String make;
-		String model;
+    public static void getCustomerInfo(){
+        Scanner sc = new Scanner(System.in);
+//        String firstName;
+//        String lastName;
+//        String contactNo;
+//        String plateNo;
+//        String color;
+//        int year;
+//        String make;
+//        String model;
+//
+//        System.out.printf("Enter first name         : ");
+//        firstName = sc.nextLine();
+//        System.out.printf("Enter last name          : ");
+//        lastName = sc.nextLine();
+//        System.out.printf("Enter contact number     : ");
+//        contactNo = sc.nextLine();
+//        System.out.printf("Enter plate number       : ");
+//        plateNo = sc.nextLine();
+//        System.out.printf("Enter color of your car  : ");
+//        color = sc.nextLine();
+//        System.out.printf("Enter year of purchase   : ");
+//        year = sc.nextInt();
+//        sc.nextLine();    //Flushing
+//        System.out.printf("Enter car make           : ");
+//        make = sc.nextLine();
+//        System.out.printf("Enter car model          : ");
+//        model = sc.nextLine();
+//
+//        Name name = new Name(firstName, lastName);				//Missing Name Class??
+//        Car car = new Car(plateNo, color, year, make, model);
+//        Customers customers = new Customers(name, contactNo, car);
 
-		System.out.printf("Enter first name         : ");
-		firstName = sc.nextLine();
-		System.out.printf("Enter last name          : ");
-		lastName = sc.nextLine();
-		System.out.printf("Enter contact number     : ");
-		contactNo = sc.nextLine();
-		System.out.printf("Enter plate number       : ");
-		plateNo = sc.nextLine();
-		System.out.printf("Enter color of your car  : ");
-		color = sc.nextLine();
-		System.out.printf("Enter year of purchase   : ");
-		year = sc.nextInt();
-		sc.nextLine(); // Flushing
-		System.out.printf("Enter car make               : "); // Car brand
-		make = sc.nextLine();
-		System.out.printf("Enter car model          : ");
-		model = sc.nextLine();
+        try {
+            Customers[] customers = fromFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-		Name name = new Name(firstName, lastName);
-		Car car = new Car(plateNo, color, year, make, model);
-		Customers customers = new Customers(name, contactNo, car);
 
-		System.out.println(customers.toString());
-	}
+    }
+    static void intoFile(Customers customers) throws IOException {
+        PrintWriter pw = new PrintWriter(new FileWriter("data/customerInfo.txt"));
+
+        pw.println(customers.toString());
+
+        pw.close();
+    }
+    static Customers[] fromFile() throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader("data/customerInfo.csv"));
+        String string;
+        Scanner sc;
+        int i = 0;
+        Customers[] customers = new Customers[100];
+        while ((string = br.readLine()) != null)
+        {
+            sc = new Scanner(string).useDelimiter("\\s*,\\s*");
+            customers[i] = new Customers(
+                    new Name (sc.next(), sc.next()),
+                    sc.next(),
+                    new Car(sc.next(),sc.next(),sc.nextInt(),sc.next(),sc.next())
+            );
+            i++;
+        }
+        br.close();
+        return customers;
+    }
 	
 	public static void technician() {
 		Scanner sc = new Scanner(System.in);
