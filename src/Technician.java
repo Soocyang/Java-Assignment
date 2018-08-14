@@ -11,11 +11,6 @@ public class Technician {
     }
     
     public String toString() {
-    	return "Technician{" +
-                "technicianID=" + technicianID +
-                ", technicianName=" + technicianName +
-                ", serviceHandle='" + serviceHandle + '\'' +
-                
-                '}'; 
+    	return technicianID + "," + technicianName + "," + serviceHandle;
     }
 }

@@ -49,7 +49,7 @@ public class FirstChoiceCarServices {
 		// Test writing into file
 		/*
 		 * CreateFile cf = new CreateFile();
-		 * 
+		 *
 		 * cf.openFile(); cf.addRecords(day, month, year, hour, minutes);
 		 * cf.closeFile();
 		 */
@@ -74,37 +74,28 @@ public class FirstChoiceCarServices {
 		// contactNo = sc.nextLine();
 		// System.out.printf("Enter plate number : ");
 		// plateNo = sc.nextLine();
-		// System.out.printf("Enter color of your car : ");
-		// color = sc.nextLine();
-		// System.out.printf("Enter year of purchase : ");
-		// year = sc.nextInt();
-		// sc.nextLine(); //Flushing
-		// System.out.printf("Enter car make : ");
-		// make = sc.nextLine();
-		// System.out.printf("Enter car model : ");
-		// model = sc.nextLine();
-		//
+
 		// Name name = new Name(firstName, lastName); //Missing Name Class??
 		// Car car = new Car(plateNo, color, year, make, model);
 		// Customers customers = new Customers(name, contactNo, car);
 
 		try {
-			Customers[] customers = fromFile();
+			Customers[] customers = readCustomerInfo();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
 	}
 
-	static void intoFile(Customers customers) throws IOException {
-		PrintWriter pw = new PrintWriter(new FileWriter("data/customerInfo.txt"));
+	static void appendCustomerInfo(Customers customers) throws IOException {
+        BufferedWriter  bw = new BufferedWriter(new FileWriter("data/customerInfoOut.txt"));
 
-		pw.println(customers.toString());
+		bw.write(customers.toString()+'\n');
 
-		pw.close();
+		bw.close();
 	}
 
-	static Customers[] fromFile() throws IOException {
+	private static Customers[] readCustomerInfo() throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader("data/customerInfo.csv"));
 		String string;
 		Scanner sc;
@@ -112,7 +103,9 @@ public class FirstChoiceCarServices {
 		Customers[] customers = new Customers[100];
 		while ((string = br.readLine()) != null) {
 			sc = new Scanner(string).useDelimiter("\\s*,\\s*");
-			customers[i] = new Customers(new Name(sc.next(), sc.next()), sc.next());
+            sc.next();
+			customers[i] = new Customers(new Name(sc.next(), sc.next()), sc.next(), sc.nextInt());
+			System.out.println(customers[i].toString());
 			i++;
 		}
 		br.close();

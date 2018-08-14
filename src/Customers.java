@@ -4,21 +4,36 @@ public class Customers {
     private String contactNo;
     private int noOfWP;
 
-    public Customers(Name customerName, String contactNo) {
+    public Customers(Name customerName, String contactNo, int noOfWP) {
         customerID++;
         this.customerName = customerName;
         this.contactNo = contactNo;
-        this.noOfWP = 0;
+        this.noOfWP = noOfWP;
+    }
+
+    public static int getCustomerID() {
+        return customerID;
+    }
+
+    public Name getCustomerName() {
+        return customerName;
+    }
+
+    public String getContactNo() {
+        return contactNo;
+    }
+
+    public int getNoOfWP() {
+        return noOfWP;
+    }
+
+    public void setNoOfWP(int noOfWP) {
+        this.noOfWP = noOfWP;
     }
 
 
     @Override
     public String toString() {
-        return "Customers{" +
-                "customerID=" + customerID +
-                ", customerName=" + customerName +
-                ", contactNo='" + contactNo + '\'' +
-                ", noOfWP=" + noOfWP +
-                '}';
+        return customerID + "," + customerName + "," + contactNo + "," + noOfWP;
     }
 }
