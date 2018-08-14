@@ -7,19 +7,16 @@ public class FirstChoiceCarServices {
 
 		getCustomerInfo();
 
-        /*
-
-		getServiceDateAndTime(); 	// test method getService date and time
-
-		try {
-			readAndStore();			//Read and Storing from file to variables/objects
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-
-		technician();
-
-		*/
+		/*
+		 * 
+		 * getServiceDateAndTime(); // test method getService date and time
+		 * 
+		 * try { readAndStore(); //Read and Storing from file to variables/objects }
+		 * catch (FileNotFoundException e) { e.printStackTrace(); }
+		 * 
+		 * technician();
+		 * 
+		 */
 	}
 
 	public static void getServiceDateAndTime() {
@@ -49,89 +46,85 @@ public class FirstChoiceCarServices {
 		// Output
 		System.out.println(serviceAppoint);
 
-		//Test writing into file
-		CreateFile cf = new CreateFile();
-
-		cf.openFile();
-		cf.addRecords(day, month, year, hour, minutes);
-		cf.closeFile();
+		// Test writing into file
+		/*
+		 * CreateFile cf = new CreateFile();
+		 * 
+		 * cf.openFile(); cf.addRecords(day, month, year, hour, minutes);
+		 * cf.closeFile();
+		 */
 	}
 
-    public static void getCustomerInfo(){
-        Scanner sc = new Scanner(System.in);
-//        String firstName;
-//        String lastName;
-//        String contactNo;
-//        String plateNo;
-//        String color;
-//        int year;
-//        String make;
-//        String model;
-//
-//        System.out.printf("Enter first name         : ");
-//        firstName = sc.nextLine();
-//        System.out.printf("Enter last name          : ");
-//        lastName = sc.nextLine();
-//        System.out.printf("Enter contact number     : ");
-//        contactNo = sc.nextLine();
-//        System.out.printf("Enter plate number       : ");
-//        plateNo = sc.nextLine();
-//        System.out.printf("Enter color of your car  : ");
-//        color = sc.nextLine();
-//        System.out.printf("Enter year of purchase   : ");
-//        year = sc.nextInt();
-//        sc.nextLine();    //Flushing
-//        System.out.printf("Enter car make           : ");
-//        make = sc.nextLine();
-//        System.out.printf("Enter car model          : ");
-//        model = sc.nextLine();
-//
-//        Name name = new Name(firstName, lastName);				//Missing Name Class??
-//        Car car = new Car(plateNo, color, year, make, model);
-//        Customers customers = new Customers(name, contactNo, car);
+	public static void getCustomerInfo() {
+		Scanner sc = new Scanner(System.in);
+		// String firstName;
+		// String lastName;
+		// String contactNo;
+		// String plateNo;
+		// String color;
+		// int year;
+		// String make;
+		// String model;
+		//
+		// System.out.printf("Enter first name : ");
+		// firstName = sc.nextLine();
+		// System.out.printf("Enter last name : ");
+		// lastName = sc.nextLine();
+		// System.out.printf("Enter contact number : ");
+		// contactNo = sc.nextLine();
+		// System.out.printf("Enter plate number : ");
+		// plateNo = sc.nextLine();
+		// System.out.printf("Enter color of your car : ");
+		// color = sc.nextLine();
+		// System.out.printf("Enter year of purchase : ");
+		// year = sc.nextInt();
+		// sc.nextLine(); //Flushing
+		// System.out.printf("Enter car make : ");
+		// make = sc.nextLine();
+		// System.out.printf("Enter car model : ");
+		// model = sc.nextLine();
+		//
+		// Name name = new Name(firstName, lastName); //Missing Name Class??
+		// Car car = new Car(plateNo, color, year, make, model);
+		// Customers customers = new Customers(name, contactNo, car);
 
-        try {
-            Customers[] customers = fromFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		try {
+			Customers[] customers = fromFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
+	}
 
-    }
-    static void intoFile(Customers customers) throws IOException {
-        PrintWriter pw = new PrintWriter(new FileWriter("data/customerInfo.txt"));
+	static void intoFile(Customers customers) throws IOException {
+		PrintWriter pw = new PrintWriter(new FileWriter("data/customerInfo.txt"));
 
-        pw.println(customers.toString());
+		pw.println(customers.toString());
 
-        pw.close();
-    }
-    static Customers[] fromFile() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("data/customerInfo.csv"));
-        String string;
-        Scanner sc;
-        int i = 0;
-        Customers[] customers = new Customers[100];
-        while ((string = br.readLine()) != null)
-        {
-            sc = new Scanner(string).useDelimiter("\\s*,\\s*");
-            customers[i] = new Customers(
-                    new Name (sc.next(), sc.next()),
-                    sc.next(),
-                    new Car(sc.next(),sc.next(),sc.nextInt(),sc.next(),sc.next())
-            );
-            i++;
-        }
-        br.close();
-        return customers;
-    }
+		pw.close();
+	}
+
+	static Customers[] fromFile() throws IOException {
+		BufferedReader br = new BufferedReader(new FileReader("data/customerInfo.csv"));
+		String string;
+		Scanner sc;
+		int i = 0;
+		Customers[] customers = new Customers[100];
+		while ((string = br.readLine()) != null) {
+			sc = new Scanner(string).useDelimiter("\\s*,\\s*");
+			customers[i] = new Customers(new Name(sc.next(), sc.next()), sc.next());
+			i++;
+		}
+		br.close();
+		return customers;
+	}
+
 	
-	public static void technician() {
+	/*public static void technician() {						//This method need to restructure
 		Scanner sc = new Scanner(System.in);
 		String firstName;
 		String lastName;
 		String serviceType;
-
-		
 
 		System.out.printf("Enter first name         : ");
 		firstName = sc.nextLine();
@@ -139,18 +132,16 @@ public class FirstChoiceCarServices {
 		lastName = sc.nextLine();
 		System.out.printf("Enter Service Type      : ");
 		serviceType = sc.nextLine();
-		
+
 		sc.nextLine(); // Flushing
 
 		Name name = new Name(firstName, lastName);
 		Services service = new Services(serviceType);
 		Technician technician = new Technician(name, service);
 
-		
-	}
-	
-	
-	//This method is used to test file reading --> only for date and time
+	}*/
+
+	// This method is used to test file reading --> only for date and time    // Will leave it as reference only
 	public static void readAndStore() throws FileNotFoundException {
 		Scanner sc;
 		try {
