@@ -27,11 +27,7 @@ public class DateServe {
 	public void setYear(int year) {
 		this.year = year;
 	}
-	
-	private SimpleDateFormat sdf;
-	private Calendar calendar;
-	private static int NationalDay = 31;
-	private static int NationalMonth = 8;
+
 	private static String[] dayOfWeek = { "Sunday", "Monday", "Tuesday", "Wedesday", "Thursday", "Friday", "Saturday" };
 	private int day;
 	private int month;
@@ -48,17 +44,17 @@ public class DateServe {
 	}
 
 	public String toString() {
-
-		sdf = new SimpleDateFormat("dd MMM yyyy");
-		calendar = new GregorianCalendar(year, month, day);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+		Calendar calendar = new GregorianCalendar(year, month, day);
 
 		return String.format("%s %s", dayOfWeek[calendar.get(Calendar.DAY_OF_WEEK) - 1],
 				sdf.format(calendar.getTime()));
 	}
 
 	public void checkIsNationalDate(int day, int month) {
-
-		if (day == NationalDay && month == NationalMonth) {
+		int nationalDay = 31;
+		int nationalMonth = 8;
+		if (day == nationalDay && month == nationalMonth) {
 			System.out.println("IS NATIONAL DAY!!");
 		} else {
 			System.out.println("Sorry, you're not applicable for free inspection...");

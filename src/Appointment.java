@@ -3,8 +3,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Appointment {
-	private SimpleDateFormat sdf;
-	private Calendar calendar;
 	private int hour;
 	private int minutes;
 	private DateServe appDay;
@@ -19,9 +17,8 @@ public class Appointment {
 	}
 
 	public String toString() {
-
-		sdf = new SimpleDateFormat("h:mm a");
-		calendar = new GregorianCalendar();
+		SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
+		Calendar calendar = new GregorianCalendar();
 
 		calendar.set(Calendar.HOUR, hour);
 		calendar.set(Calendar.MINUTE, minutes);
