@@ -9,9 +9,9 @@ public class FirstChoiceCarServices {
 
 		getServiceDateAndTime(); 	// test method getService date and time
 		
-		readAndStore();				//Read and Storing from file to variables/objects
+		readAndStore();			//Read and Storing from file to variables/objects
 		
-
+		/*technician();*/
 	}
 
 	public static void getServiceDateAndTime() {
@@ -83,6 +83,30 @@ public class FirstChoiceCarServices {
 		Customers customers = new Customers(name, contactNo, car);
 
 		System.out.println(customers.toString());
+	}
+	
+	public static void technician() {
+		Scanner sc = new Scanner(System.in);
+		String firstName;
+		String lastName;
+		String serviceType;
+
+		
+
+		System.out.printf("Enter first name         : ");
+		firstName = sc.nextLine();
+		System.out.printf("Enter last name          : ");
+		lastName = sc.nextLine();
+		System.out.printf("Enter Service Type      : ");
+		serviceType = sc.nextLine();
+		
+		sc.nextLine(); // Flushing
+
+		Name name = new Name(firstName, lastName);
+		Services service = new Services(serviceType);
+		Technician technician = new Technician(name, service);
+
+		
 	}
 	
 	

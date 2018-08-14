@@ -15,5 +15,9 @@ public class Services {
         this.price = price;
 
     }
+    
+    public Services(String serviceType) {
+    	this.serviceType = serviceType;
+    }
 
 }
