@@ -6,12 +6,12 @@ public class Appointment {
 	private Customers customer;
 	private int hour;
 	private int minutes;
-	private DateServe appDay;
+	private DateTime appDay;
 
 	public Appointment() {
 	}
 
-	public Appointment(Customers customer, int hour, int minutes, DateServe appoinmentDay) {
+	public Appointment(Customers customer, int hour, int minutes, DateTime appoinmentDay) {
 		this.customer=customer;
 		this.hour = hour;
 		this.minutes = minutes;

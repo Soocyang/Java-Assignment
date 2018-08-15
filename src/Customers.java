@@ -31,9 +31,16 @@ public class Customers {
         this.noOfWP = noOfWP;
     }
 
+    public String toFile() {
+        return customerID + "," + customerName + "," + contactNo + "," + noOfWP;
+    }
 
     @Override
     public String toString() {
-        return customerID + "," + customerName + "," + contactNo + "," + noOfWP;
+        return "Customers{" +
+                "customerName=" + customerName +
+                ", contactNo='" + contactNo + '\'' +
+                ", noOfWP=" + noOfWP +
+                '}';
     }
 }

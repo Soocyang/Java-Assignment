@@ -3,14 +3,13 @@ public class Technician {
     private Name technicianName;
     private Services serviceHandle;
     
-    
     public Technician(Name technicianName, Services serviceHandle) {
     	technicianID++;
         this.technicianName = technicianName;
         this.serviceHandle = serviceHandle;
     }
     
-    public String toString() {
+    public String toFile() {
     	return technicianID + "," + technicianName + "," + serviceHandle;
     }
 }

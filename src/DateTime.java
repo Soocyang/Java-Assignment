@@ -2,47 +2,27 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class DateServe {
-	
-	public int getDay() {
-		return day;
-	}
-
-	public void setDay(int day) {
-		this.day = day;
-	}
-
-	public int getMonth() {
-		return month;
-	}
-
-	public void setMonth(int month) {
-		this.month = month;
-	}
-
-	public int getYear() {
-		return year;
-	}
-
-	public void setYear(int year) {
-		this.year = year;
-	}
-
+public class DateTime {
 	private static String[] dayOfWeek = { "Sunday", "Monday", "Tuesday", "Wedesday", "Thursday", "Friday", "Saturday" };
 	private int day;
 	private int month;
 	private int year;
+    private int hour;
+    private int minute;
 
-	public DateServe() {
+	public DateTime() {
 
 	}
 
-	public DateServe(int day, int month, int year) {
-		this.day = day;
-		this.month = month;
-		this.year = year;
-	}
+    public DateTime(int day, int month, int year, int hour, int minute) {
+        this.day = day;
+        this.month = month;
+        this.year = year;
+        this.hour = hour;
+        this.minute = minute;
+    }
 
+    @Override
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
 		Calendar calendar = new GregorianCalendar(year, month, day);
@@ -51,13 +31,13 @@ public class DateServe {
 				sdf.format(calendar.getTime()));
 	}
 
-	public void checkIsNationalDate(int day, int month) {
-		int nationalDay = 31;
-		int nationalMonth = 8;
-		if (day == nationalDay && month == nationalMonth) {
+	public boolean checkIsNationalDate() {
+		if (this.day == 31 && this.month == 8) {
 			System.out.println("IS NATIONAL DAY!!");
+			return true;
 		} else {
 			System.out.println("Sorry, you're not applicable for free inspection...");
+		    return false;
 		}
 
 	}
