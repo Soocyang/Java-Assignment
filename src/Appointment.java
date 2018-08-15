@@ -3,6 +3,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Appointment {
+	private Customers customer;
 	private int hour;
 	private int minutes;
 	private DateServe appDay;
@@ -10,7 +11,8 @@ public class Appointment {
 	public Appointment() {
 	}
 
-	public Appointment(int hour, int minutes, DateServe appoinmentDay) {
+	public Appointment(Customers customer, int hour, int minutes, DateServe appoinmentDay) {
+		this.customer=customer;
 		this.hour = hour;
 		this.minutes = minutes;
 		this.appDay = appoinmentDay;
@@ -24,7 +26,7 @@ public class Appointment {
 		calendar.set(Calendar.MINUTE, minutes);
 		calendar.set(Calendar.AM_PM, Calendar.AM);
 
-		return String.format("Service Date and Time : %s %s", sdf.format(calendar.getTime()), appDay);
+		return String.format("Customer : %s \nService Date and Time : %s %s", customer, sdf.format(calendar.getTime()), appDay);
 	}
 	
 	public void setHour(int hour) {

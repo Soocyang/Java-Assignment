@@ -5,21 +5,26 @@ public class FirstChoiceCarServices {
 
 	public static void main(String[] args) {
 
-		getCustomerInfo();
-
-		/*
-		 * 
-		 * getServiceDateAndTime(); // test method getService date and time
-		 * 
-		 * try { readAndStore(); //Read and Storing from file to variables/objects }
-		 * catch (FileNotFoundException e) { e.printStackTrace(); }
-		 * 
-		 * technician();
-		 * 
-		 */
+		/*getCustomerInfo();
+*/
+		
+		  
+		try {
+			getAppointment();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} // test method getService date and time
+	 
+		/*try { readAndStore(); //Read and Storing from file to variables/objects }
+		catch (FileNotFoundException e) { e.printStackTrace(); }
+		
+		technician();*/
+		 
+		 
 	}
 
-	public static void getServiceDateAndTime() {
+	public static void getAppointment() throws IOException {
 
 		Scanner scn = new Scanner(System.in);
 		int day, month, year, hour, minutes;
@@ -37,8 +42,9 @@ public class FirstChoiceCarServices {
 		minutes = scn.nextInt();
 
 		// Pass to class
+		Customers customer = new Customers(new Name("Ah","Kao"),"016789266",6);
 		DateServe dateOfService = new DateServe(day, month - 1, year);
-		Appointment serviceAppoint = new Appointment(hour, minutes, dateOfService);
+		Appointment serviceAppoint = new Appointment(customer, hour, minutes, dateOfService);
 
 		// Validate for free inspection
 		dateOfService.checkIsNationalDate(day, month);
@@ -134,8 +140,10 @@ public class FirstChoiceCarServices {
 
 	}*/
 
+	
+	
 	// This method is used to test file reading --> only for date and time    // Will leave it as reference only
-	public static void readAndStore() throws FileNotFoundException {
+	/*public static void readAndStore() throws FileNotFoundException {
 		Scanner sc;
 		try {
 			sc = new Scanner(new File("test2.txt"));
@@ -162,6 +170,6 @@ public class FirstChoiceCarServices {
 			throw e;
 		}
 
-	}
+	}*/
 
 }
