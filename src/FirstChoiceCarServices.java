@@ -7,17 +7,24 @@ public class FirstChoiceCarServices {
 
 		// getCustomerInfo();
 
-		try {
+		/*try {
 			newAppointment();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} // test method getService date and time
-	 
+*/	 
 		/*try { readAndStore(); //Read and Storing from file to variables/objects }
 		catch (FileNotFoundException e) { e.printStackTrace(); }
 		
 		technician();*/
+		
+		
+		//Test DateTime Class
+		DateTime dt = new DateTime(31,8,2018,16,30);
+		
+		System.out.println(dt.toString());
+		
 		 
 		 
 	}

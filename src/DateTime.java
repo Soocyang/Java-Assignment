@@ -7,28 +7,28 @@ public class DateTime {
 	private int day;
 	private int month;
 	private int year;
-    private int hour;
-    private int minute;
+	private int hour;
+	private int minute;
 
 	public DateTime() {
 
 	}
 
-    public DateTime(int day, int month, int year, int hour, int minute) {
-        this.day = day;
-        this.month = month;
-        this.year = year;
-        this.hour = hour;
-        this.minute = minute;
-    }
+	public DateTime(int day, int month, int year, int hour, int minute) {
+		this.day = day;
+		this.month = month;
+		this.year = year;
+		this.hour = hour;
+		this.minute = minute;
+	}
 
-    @Override
+	@Override
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy h:mm a");
-		Calendar calendar = new GregorianCalendar(year, month, day, hour, minute);
+		Calendar calendar = new GregorianCalendar(year, month-1, day, hour, minute);
 
-		calendar.set(Calendar.HOUR, this.hour);
-		calendar.set(Calendar.MINUTE, this.minute);
+		calendar.set(Calendar.HOUR, hour);
+		calendar.set(Calendar.MINUTE, minute);
 		calendar.set(Calendar.AM_PM, Calendar.AM);
 
 		return String.format("%s %s", dayOfWeek[calendar.get(Calendar.DAY_OF_WEEK) - 1],
@@ -41,7 +41,7 @@ public class DateTime {
 			return true;
 		} else {
 			System.out.println("Sorry, you're not applicable for free inspection...");
-		    return false;
+			return false;
 		}
 
 	}

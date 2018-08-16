@@ -9,8 +9,8 @@ public class Inspection extends Services {
 	public Inspection(Customers customer, Appointment appointment, String plateNo, String serviceType,
 			String serviceDesc, Technician technician) {
 
-		super(appointment, plateNo, serviceType, serviceDesc, technician);
-		inspectionCode++;
+/*		super(appointment, plateNo, serviceType, serviceDesc, technician);
+*/		inspectionCode++;
 	}
 
 	public String toString() {

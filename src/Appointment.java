@@ -16,18 +16,6 @@ public class Appointment {
         this.preferService = preferService;
     }
 
-    public String toString() {
-
-
-	    return String.format("Customer : %s \nService Date and Time : %s %s", customer, sdf.format(calendar.getTime()), appDay);
-	}
-	
-	public void setHour(int hour) {
-		this.hour=hour;
-	}
-	
-	public void setMinutes(int minutes) {
-		this.minutes=minutes;
-	}
+    
 
 }
