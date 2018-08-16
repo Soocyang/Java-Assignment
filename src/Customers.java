@@ -37,10 +37,9 @@ public class Customers {
 
     @Override
     public String toString() {
-        return "Customers{" +
-                "customerName=" + customerName +
-                ", contactNo='" + contactNo + '\'' +
-                ", noOfWP=" + noOfWP +
-                '}';
+        return "customer ID = " + customerID +'\n' +
+                "customerName = " + customerName +'\n' +
+                "contactNo   = " + contactNo + '\n' +
+                "Number of Wax & Polish = " + noOfWP +'\n';
     }
 }

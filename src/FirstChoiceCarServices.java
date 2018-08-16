@@ -2,48 +2,35 @@ import java.io.*;
 import java.util.Scanner;
 
 public class FirstChoiceCarServices {
-
 	public static void main(String[] args) {
 
-		// getCustomerInfo();
-
-		/*try {
+		getCustomerInfo();
+        System.out.print("The next customer ID starts from : " + Customers.getCustomerID());
+		try {
 			newAppointment();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} // test method getService date and time
-*/	 
-		/*try { readAndStore(); //Read and Storing from file to variables/objects }
-		catch (FileNotFoundException e) { e.printStackTrace(); }
-		
-		technician();*/
-		
-		
-		//Test DateTime Class
-		DateTime dt = new DateTime(31,8,2018,16,30);
-		
-		System.out.println(dt.toString());
-		
-		 
-		 
-	}
+		}
+    }
 
 	private static void newAppointment() throws IOException {
 		Customers customers;
         PreService preService;
 		DateTime dateTime = newDateTime(); //Get Time&Date
         Scanner sc = new Scanner(System.in);
-        String in;
+        int in;
 
         do { //Get CustomerInfo
-            System.out.print("Is this your first time visiting 'First Choice Car Services'? (Y/N) : ");
-            in = sc.next();
-        }while(in.charAt(0) != 'Y' && in.charAt(0) != 'N');
+            System.out.print("Is this your first time visiting 'First Choice Car Services'?\n" +
+                    "1. Yes\n" +
+                    "2. No\n");
+            in = sc.nextInt();
+        }while(in != 1 && in != 2);
 
-		if (in.charAt(0) == 'Y')
+		// if (in == 1) //Yes, new customer
             customers = newCustomer();
-        else
+        // else //No, returning customer
             //customers = findCustomer(); //TODO find customer here
 
         do { //Get Preferred Service
@@ -54,10 +41,11 @@ public class FirstChoiceCarServices {
                     "4. Wax and Polish\n"+
                     "Enter index 1~4 : "
             );
-            in = sc.next();
-        }while(in.charAt(0) < '1' || in.charAt(0) > '4');
+            in = sc.nextInt();
+        }while(in < 1 || in > 4);
 
-        Appointment appointment = new Appointment();
+        Appointment appointment = new Appointment(customers, dateTime, in);
+        System.out.print(appointment.toString());
 	}
 
     private static DateTime newDateTime(){
@@ -79,9 +67,9 @@ public class FirstChoiceCarServices {
 
     private static Customers newCustomer(){
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter first : ");
+        System.out.print("Enter first name : ");
         String firstName = sc.next();
-        System.out.print("Enter last : ");
+        System.out.print("Enter last last : ");
         String lastName = sc.next();
         System.out.print("Enter contact : ");
         String contact = sc.next();
@@ -116,7 +104,7 @@ public class FirstChoiceCarServices {
 	}
 
 	static void appendCustomerInfo(Customers customers) throws IOException {
-        BufferedWriter  bw = new BufferedWriter(new FileWriter("data/customerInfoOut.txt"));
+        BufferedWriter  bw = new BufferedWriter(new FileWriter("data/customerInfoOut.csv", true));
 
 		bw.write(customers.toFile()+'\n');
 
@@ -139,60 +127,4 @@ public class FirstChoiceCarServices {
 		br.close();
 		return customers;
 	}
-
-
-	
-	/*public static void technician() {						//This method need to restructure
-		Scanner sc = new Scanner(System.in);
-		String firstName;
-		String lastName;
-		String serviceType;
-
-		System.out.printf("Enter first name         : ");
-		firstName = sc.nextLine();
-		System.out.printf("Enter last name          : ");
-		lastName = sc.nextLine();
-		System.out.printf("Enter Service Type      : ");
-		serviceType = sc.nextLine();
-
-		sc.nextLine(); // Flushing
-
-		Name name = new Name(firstName, lastName);
-		Services service = new Services(serviceType);
-		Technician technician = new Technician(name, service);
-
-	}*/
-
-	
-	
-	// This method is used to test file reading --> only for date and time    // Will leave it as reference only
-	/*public static void readAndStore() throws FileNotFoundException {
-		Scanner sc;
-		try {
-			sc = new Scanner(new File("test2.txt"));
-
-			System.out.println("Reading...");
-
-			while (sc.hasNext()) {
-
-				int d = sc.nextInt();
-				int m = sc.nextInt();
-				int y = sc.nextInt();
-				int hh = sc.nextInt();
-				int min = sc.nextInt();
-
-				DateTime dateOfService = new DateTime(d, m - 1, y);
-				Appointment serviceAppoint = new Appointment(hh, min, dateOfService);
-
-				System.out.println(serviceAppoint);
-			}
-
-			sc.close();
-
-		} catch (Exception e) {
-			throw e;
-		}
-
-	}*/
-
 }
