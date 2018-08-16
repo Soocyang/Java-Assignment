@@ -4,29 +4,22 @@ import java.util.GregorianCalendar;
 
 public class Appointment {
 	private Customers customer;
-	private int hour;
-	private int minutes;
-	private DateTime appDay;
+	private DateTime dateTime;
+    private int preferService;
 
 	public Appointment() {
 	}
 
-	public Appointment(Customers customer, int hour, int minutes, DateTime appoinmentDay) {
-		this.customer=customer;
-		this.hour = hour;
-		this.minutes = minutes;
-		this.appDay = appoinmentDay;
-	}
+    public Appointment(Customers customer, DateTime dateTime, int preferService) {
+        this.customer = customer;
+        this.dateTime = dateTime;
+        this.preferService = preferService;
+    }
 
-	public String toString() {
-		SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
-		Calendar calendar = new GregorianCalendar();
+    public String toString() {
 
-		calendar.set(Calendar.HOUR, hour);
-		calendar.set(Calendar.MINUTE, minutes);
-		calendar.set(Calendar.AM_PM, Calendar.AM);
 
-		return String.format("Customer : %s \nService Date and Time : %s %s", customer, sdf.format(calendar.getTime()), appDay);
+	    return String.format("Customer : %s \nService Date and Time : %s %s", customer, sdf.format(calendar.getTime()), appDay);
 	}
 	
 	public void setHour(int hour) {

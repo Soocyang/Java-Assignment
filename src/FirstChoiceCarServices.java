@@ -23,18 +23,18 @@ public class FirstChoiceCarServices {
 	}
 
 	private static void newAppointment() throws IOException {
-		char in;
 		Customers customers;
         PreService preService;
 		DateTime dateTime = newDateTime(); //Get Time&Date
+        Scanner sc = new Scanner(System.in);
+        String in;
 
-
-		do { //Get CustomerInfo
+        do { //Get CustomerInfo
             System.out.print("Is this your first time visiting 'First Choice Car Services'? (Y/N) : ");
-            in = (char)System.in.read();
-        }while(in != 'Y' && in != 'N');
+            in = sc.next();
+        }while(in.charAt(0) != 'Y' && in.charAt(0) != 'N');
 
-		if (in == 'Y')
+		if (in.charAt(0) == 'Y')
             customers = newCustomer();
         else
             //customers = findCustomer(); //TODO find customer here
@@ -47,18 +47,10 @@ public class FirstChoiceCarServices {
                     "4. Wax and Polish\n"+
                     "Enter index 1~4 : "
             );
-            in = (char)System.in.read();
-        }while(in < '1' || in > '4');
+            in = sc.next();
+        }while(in.charAt(0) < '1' || in.charAt(0) > '4');
 
-        if (in == '1')
-            preService = new Maintenance();
-        else if (in == '2')
-            preService = new Repair();
-        else if (in == '3')
-            preService = new Repaint();
-        else
-            preService = new WaxPolish();
-
+        Appointment appointment = new Appointment();
 	}
 
     private static DateTime newDateTime(){

@@ -24,8 +24,12 @@ public class DateTime {
 
     @Override
 	public String toString() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
-		Calendar calendar = new GregorianCalendar(year, month, day);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy h:mm a");
+		Calendar calendar = new GregorianCalendar(year, month, day, hour, minute);
+
+		calendar.set(Calendar.HOUR, this.hour);
+		calendar.set(Calendar.MINUTE, this.minute);
+		calendar.set(Calendar.AM_PM, Calendar.AM);
 
 		return String.format("%s %s", dayOfWeek[calendar.get(Calendar.DAY_OF_WEEK) - 1],
 				sdf.format(calendar.getTime()));
@@ -42,4 +46,11 @@ public class DateTime {
 
 	}
 
+	public int getHour() {
+		return hour;
+	}
+
+	public int getMinute() {
+		return minute;
+	}
 }
