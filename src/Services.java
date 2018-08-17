@@ -1,5 +1,4 @@
 public class Services {
-	private static int transactionCode = 1000; // auto generate
 	private static int serviceID = 1000; // auto generate
 	private Appointment appointment;
 	private Customers customers;

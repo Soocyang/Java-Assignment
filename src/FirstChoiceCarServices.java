@@ -51,6 +51,7 @@ public class FirstChoiceCarServices {
     private static DateTime newDateTime(){
         Scanner sc = new Scanner(System.in);
         // Prompt User Input Date and Time they wish to service car
+        System.out.println();
         System.out.print("Enter date : ");
         int day = sc.nextInt();
         System.out.print("Enter month : ");
