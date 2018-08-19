@@ -8,10 +8,8 @@ public abstract class Services {
 	private String plateNo;
 	private Technician technician;
     private String serviceDesc;
-    protected double servicePrice;
-
-	public Services() {
-	}
+    private double servicePrice;
+    private boolean freeInspection;
 
 	public Services(String serviceID, Appointment appointment, String plateNo, Technician technician, String serviceDesc, double servicePrice) {
 		this.serviceID = serviceID;
@@ -20,6 +18,7 @@ public abstract class Services {
 		this.technician = technician;
         this.serviceDesc = serviceDesc;
         this.servicePrice = servicePrice;
+        this.freeInspection = appointment.getDateTime().IsNationalDay();
 	}
 
    @Override
@@ -29,7 +28,8 @@ public abstract class Services {
                 "Plate Number           = " + plateNo + '\n' +
                 technician +
                 "Service Description    = " + serviceDesc + '\n' +
-                "Service Price          = " + servicePrice + '\n';
+                "Service Price          = " + servicePrice + '\n' +
+                "Free Inspection        = " + freeInspection + '\n';
     }
 
     static void newServices(ArrayList<Services> services, ArrayList<Appointment> appointment, ArrayList<Technician> technician) {
@@ -52,7 +52,7 @@ public abstract class Services {
                 appointmentIndex = userInput-1;
                 do {
                     System.out.print(appointment.get(appointmentIndex) +
-                            "Begin service above appointment?\n" +
+                            "Continue service with above appointment?\n" +
                             "1. Yes\n" +
                             "2. No\n");
                     userInput = sc.nextInt();
@@ -138,7 +138,7 @@ public abstract class Services {
         br.close();
     }
 
-    public static Services createService(int serviceType, Appointment appointmentID, String plateNo, Technician technicianID, String serviceDesc){
+    private static Services createService(int serviceType, Appointment appointmentID, String plateNo, Technician technicianID, String serviceDesc){
         if (serviceType == '0') {
             return new Maintenance(appointmentID,plateNo,technicianID,serviceDesc);
         }
@@ -151,5 +151,13 @@ public abstract class Services {
         else{ //serviceType == '3'
             return new WaxPolish(appointmentID,plateNo,technicianID,serviceDesc);
         }
+    }
+
+    String getServiceID() {
+        return serviceID;
+    }
+
+    double getServicePrice() {
+        return servicePrice;
     }
 }

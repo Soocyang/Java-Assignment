@@ -90,4 +90,8 @@ public class Appointment {
     public int getPreferService() {
         return preferService;
     }
+
+    public DateTime getDateTime() {
+        return dateTime;
+    }
 }
