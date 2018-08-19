@@ -11,6 +11,10 @@ public class Appointment {
         this.dateTime = dateTime;
         this.preferService = preferService;
     }
+    
+    public Customers getCustomer() {
+    	return customer;
+    }
 
     @Override
     public String toString() {
