@@ -1,11 +1,10 @@
 public class Repair extends Services{
     private String serviceDesc;
-    private double servicePrice;
+    private double servicePrice = 100.00;
 
-    public Repair(Appointment appointment, Customers customers, String plateNo, Technician technician, String serviceDesc, double servicePrice) {
+    public Repair(Appointment appointment, Customers customers, String plateNo, Technician technician, String serviceDesc) {
         super(appointment, customers, plateNo, technician);
         this.serviceDesc = "Maintenance";
-        this.servicePrice = 0;
     }
 
     @Override
@@ -15,5 +14,10 @@ public class Repair extends Services{
                 ", servicePrice=" + servicePrice +
                 '}';
     }
+    
+    public double calcPrice() {
+		
+    	return servicePrice;
+	}
 }
 

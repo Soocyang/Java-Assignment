@@ -18,5 +18,10 @@ public class Inspection extends Services {
 		return String.format("Inspection Code %d \n %s", inspectionCode, super.toString());
 
 	}
+	
+	public double calcPrice() {
+		
+		return 0.00;
+	}
 
 }
