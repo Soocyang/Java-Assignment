@@ -8,8 +8,9 @@ public class FirstChoiceCarServices {
 
         try {
             ArrayList<Customers> customers = readCustomerInfo();
-            System.out.print("The next customer ID starts from : " + Customers.getCustomerID());
             newAppointment(customers);
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }

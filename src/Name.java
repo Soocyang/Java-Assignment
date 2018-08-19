@@ -15,9 +15,13 @@ public class Name {
         return lastName;
     }
 
+    public String toFile() {
+        return firstName + ',' + lastName;
+    }
+
     @Override
     public String toString() {
-        return firstName + ',' + lastName;
+        return firstName + ' ' + lastName;
     }
 }
 

@@ -1,17 +1,18 @@
 public class Customers {
-    private static int customerID = 0; //Auto Generated, increment by one
+    private static int ID = 0; //Increment by one
+    private String customerID; //Auto Generated from ID above
     private Name customerName;
     private String contactNo;
     private int noOfWP;
 
     public Customers(Name customerName, String contactNo, int noOfWP) {
-        customerID++;
+        this.customerID = String.format("C%04d",++ID);
         this.customerName = customerName;
         this.contactNo = contactNo;
         this.noOfWP = noOfWP;
     }
 
-    public static int getCustomerID() {
+    public String getCustomerID() {
         return customerID;
     }
 
@@ -32,14 +33,13 @@ public class Customers {
     }
 
     public String toFile() {
-        return String.format("%04d,%s,%s,%d\n",customerID,customerName,contactNo,noOfWP);
+        return customerID + "," + customerName.toFile() + "," + contactNo + "," + noOfWP;
     }
-
     @Override
     public String toString() {
-        return String.format("Customer ID            = C%04d\n",customerID) +
-                "Customer Name          = " + customerName +'\n' +
+        return "Customer ID            = " + customerID + '\n' +
+                "Customer Name          = " + customerName + '\n' +
                 "Customer Contact       = " + contactNo + '\n' +
-                "Number of Wax & Polish = " + noOfWP +'\n';
+                "Number of Wax & Polish = " + noOfWP + '\n';
     }
 }
