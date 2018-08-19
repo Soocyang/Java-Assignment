@@ -32,13 +32,10 @@ public class Technician {
         BufferedReader br = new BufferedReader(new FileReader("data/technicianInfo.csv"));
         String string;
         Scanner sc;
-        int i = 0; //can remove later, for display purposes
         while ((string = br.readLine()) != null) {
             sc = new Scanner(string).useDelimiter("\\s*,\\s*");
-            sc.next(); //Ignoring the first field which contains customerID.
+            sc.next(); //Ignoring the first field which contains TechnicianID.
             technician.add(new Technician(new Name(sc.next(), sc.next()), sc.nextInt()));
-            System.out.println(technician.get(i).toString());
-            i++;
         }
         br.close();
     }

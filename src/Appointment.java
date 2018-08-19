@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Appointment {
+    private static int ID = 0; //Increment by one
+    private String appointmentID; //Auto Generated from ID above
     private Customers customer;
     private DateTime dateTime;
     private int preferService;
@@ -11,6 +13,7 @@ public class Appointment {
     }
 
     public Appointment(Customers customer, DateTime dateTime, int preferService) {
+        this.appointmentID = String.format("A%04d", ++ID);
         this.customer = customer;
         this.dateTime = dateTime;
         this.preferService = preferService;
@@ -19,7 +22,8 @@ public class Appointment {
     @Override
     public String toString() {
         String[] service = {"Maintenance", "Repair", "Repaint", "Wax and Polish"};
-        return  customer +
+        return  "Appointment ID         = " + appointmentID + "\n" +
+                customer +
                 "Date & Time            = " + dateTime  + "\n" +
                 "Prefer Service         = " + service[preferService-1] + "\n";
     }
@@ -58,27 +62,25 @@ public class Appointment {
         appointment.add(new Appointment(customers.get(custIndex), dateTime, userInput));
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("data/appointmentInfo.csv", true));
-            bw.write(custIndex+1 + "," + dateTime.toFile() + "," + userInput + "\n");
+            bw.write(String.format("C%04d",ID-1) + "," + custIndex+1 + "," + dateTime.toFile() + "," + userInput + "\n");
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(appointment.get(appointment.size()-1));
+        System.out.println(appointment.get(ID-1));
     }
 
     static void readFile(ArrayList<Appointment> appointment, ArrayList<Customers> customers) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("data/appointmentInfo.csv"));
         String string;
         Scanner sc;
-        int i = 0; //can remove later, for display purposes
         while ((string = br.readLine()) != null) {
             sc = new Scanner(string).useDelimiter("\\s*,\\s*");
+            sc.next(); //Ignoring the first field which contains AppointID.
             appointment.add(new Appointment(
                     customers.get(sc.nextInt()-1),
                     new DateTime(sc.nextInt(),sc.nextInt(),sc.nextInt(),sc.nextInt(),sc.nextInt()),
                     sc.nextInt()));
-            System.out.println(appointment.get(i).toString());
-            i++;
         }
         br.close();
     }

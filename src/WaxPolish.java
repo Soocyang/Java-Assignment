@@ -1,18 +1,19 @@
 public class WaxPolish extends Services{
-    private String serviceDesc;
+    private static int ID = 0; //Increment by one
     private double servicePrice = 190.00;
 
+    public WaxPolish(Appointment appointment, Customers customers, String plateNo, Technician technician) {
+        super(String.format("S3%03d",++ID),"Wax and Polish",appointment, customers, plateNo, technician);
+    }   //Constructor without desc
+
     public WaxPolish(Appointment appointment, Customers customers, String plateNo, Technician technician, String serviceDesc) {
-        super(appointment, customers, plateNo, technician);
-        this.serviceDesc = "Maintenance";
-    }
+        super(String.format("S3%03d",++ID),serviceDesc,appointment, customers, plateNo, technician);
+    }   //Constructor with customer desc
 
     @Override
     public String toString() {
-        return super.toString() +
-                "serviceDesc='" + serviceDesc + '\'' +
-                ", servicePrice=" + servicePrice +
-                '}';
+        return super.toString() + '\n' +
+                "servicePrice = " + servicePrice + '\n';
     }
     
     public double calcPrice() {
