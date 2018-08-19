@@ -8,7 +8,7 @@ public class FirstChoiceCarServices {
         Scanner sc = new Scanner(System.in);
 
         try {
-            Customers[] customers = readCustomerInfo();
+            ArrayList<Customers> customers = readCustomerInfo();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -111,7 +111,7 @@ public class FirstChoiceCarServices {
 		bw.close();
 	}
 
-	private static Customers[] readCustomerInfo() throws IOException {
+	private static ArrayList<Customers> readCustomerInfo() throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader("data/customerInfo.csv"));
 		String string;
 		Scanner sc;
@@ -122,7 +122,7 @@ public class FirstChoiceCarServices {
 			sc = new Scanner(string).useDelimiter("\\s*,\\s*");
             sc.next();
 			customers.add(new Customers(new Name(sc.next(), sc.next()), sc.next(), sc.nextInt()));
-			System.out.println(customers.get().toString());
+			System.out.println(customers.get(i).toString());
 			i++;
 		}
 		br.close();
