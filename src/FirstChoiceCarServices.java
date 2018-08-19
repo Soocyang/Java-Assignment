@@ -5,18 +5,19 @@ import java.util.Scanner;
 public class FirstChoiceCarServices {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
+        ArrayList<Customers> customers = new ArrayList<>();
+        ArrayList<Technician> technician = new ArrayList<>();
         try {
-            ArrayList<Customers> customers = readCustomerInfo();
+            Customers.readFile(customers);
+            Technician.readFile(technician);
             newAppointment(customers);
-
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-	private static void newAppointment(ArrayList<Customers> customers) throws IOException {
+    private static void newAppointment(ArrayList<Customers> customers) throws IOException {
         PreService preService;
 		DateTime dateTime = newDateTime(); //Get Time&Date
         Scanner sc = new Scanner(System.in);
@@ -80,7 +81,7 @@ public class FirstChoiceCarServices {
         customers.add(new Customers(new Name(firstName, lastName),contact, 0));
         int lastIndex = customers.size()-1;
         try {
-            appendCustomerInfo(customers.get(lastIndex));
+            Customers.appendFile(customers.get(lastIndex));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -108,27 +109,4 @@ public class FirstChoiceCarServices {
         }while(in == 1);
         return newCustomer(customers);
     }
-
-	static void appendCustomerInfo(Customers customers) throws IOException {
-        BufferedWriter  bw = new BufferedWriter(new FileWriter("data/customerInfo.csv", true));
-		bw.write(customers.toFile());
-		bw.close();
-	}
-
-	private static ArrayList<Customers> readCustomerInfo() throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader("data/customerInfo.csv"));
-		String string;
-		Scanner sc;
-		int i = 0;
-		ArrayList<Customers> customers = new ArrayList<>();
-        while ((string = br.readLine()) != null) {
-			sc = new Scanner(string).useDelimiter("\\s*,\\s*");
-            sc.next(); //Ignoring the first field which contains customerID.
-			customers.add(new Customers(new Name(sc.next(), sc.next()), sc.next(), sc.nextInt()));
-			System.out.println(customers.get(i).toString());
-			i++;
-		}
-		br.close();
-		return customers;
-	}
 }

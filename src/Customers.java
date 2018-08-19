@@ -1,3 +1,7 @@
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Customers {
     private static int ID = 0; //Increment by one
     private String customerID; //Auto Generated from ID above
@@ -33,7 +37,7 @@ public class Customers {
     }
 
     public String toFile() {
-        return customerID + "," + customerName.toFile() + "," + contactNo + "," + noOfWP;
+        return customerID + "," + customerName.toFile() + "," + contactNo + "," + noOfWP + "\n";
     }
     @Override
     public String toString() {
@@ -41,5 +45,26 @@ public class Customers {
                 "Customer Name          = " + customerName + '\n' +
                 "Customer Contact       = " + contactNo + '\n' +
                 "Number of Wax & Polish = " + noOfWP + '\n';
+    }
+
+    static void readFile(ArrayList<Customers> customers) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader("data/customerInfo.csv"));
+        String string;
+        Scanner sc;
+        int i = 0;
+        while ((string = br.readLine()) != null) {
+            sc = new Scanner(string).useDelimiter("\\s*,\\s*");
+            sc.next(); //Ignoring the first field which contains customerID.
+            customers.add(new Customers(new Name(sc.next(), sc.next()), sc.next(), sc.nextInt()));
+            System.out.println(customers.get(i).toString());
+            i++;
+        }
+        br.close();
+    }
+
+    static void appendFile(Customers customers) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter("data/customerInfo.csv", true));
+        bw.write(customers.toFile());
+        bw.close();
     }
 }
