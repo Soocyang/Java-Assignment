@@ -12,7 +12,7 @@ public class FirstChoiceCarServices {
         try {
             Customers.readFile(customers);
             Technician.readFile(technician);
-            Appointment.readFile(appointment, customers); //TODO fix appointment file
+            Appointment.readFile(appointment, customers); //TODO fix appointment file not matching technician handle
             Services.readFile(services, appointment, technician);
 
             Appointment.newAppointment(appointment, customers);

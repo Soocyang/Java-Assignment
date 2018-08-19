@@ -39,4 +39,8 @@ public class Technician {
         }
         br.close();
     }
+
+    public int getServiceHandle() {
+        return serviceHandle;
+    }
 }

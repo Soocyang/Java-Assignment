@@ -33,8 +33,6 @@ public class Appointment {
     }
 
     static void newAppointment(ArrayList<Appointment> appointment, ArrayList<Customers> customers) throws IOException {
-
-
         DateTime dateTime = DateTime.newDateTime(); //Get Time&Date
         Scanner sc = new Scanner(System.in);
         int custIndex;
@@ -66,7 +64,7 @@ public class Appointment {
         appointment.add(new Appointment(customers.get(custIndex), dateTime, userInput));
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("data/appointmentInfo.csv", true));
-            bw.write(String.format("C%04d",ID-1) + "," + custIndex+1 + "," + dateTime.toFile() + "," + userInput + "\n");
+            bw.write(String.format("A%04d",ID) + "," + (custIndex+1) + "," + dateTime.toFile() + "," + userInput + "\n");
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -87,5 +85,9 @@ public class Appointment {
                     sc.nextInt()));
         }
         br.close();
+    }
+
+    public int getPreferService() {
+        return preferService;
     }
 }
