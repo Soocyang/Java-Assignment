@@ -1,24 +1,17 @@
 public class Repair extends Services{
     private static int ID = 0; //Increment by one
-    private double servicePrice = 100.00;
 
-    public Repair(Appointment appointment, Customers customers, String plateNo, Technician technician) {
-        super(String.format("S2%03d",++ID),"Repair",appointment, customers, plateNo, technician);
+    public Repair(Appointment appointment, String plateNo, Technician technician) {
+        super(String.format("S2%03d",++ID),"Repair",appointment, plateNo, technician, 100.00);
     }   //Constructor without desc
 
-    public Repair(Appointment appointment, Customers customers, String plateNo, Technician technician, String serviceDesc) {
-        super(String.format("S2%03d",++ID),serviceDesc,appointment, customers, plateNo, technician);
+    public Repair(String serviceDesc, Appointment appointment, String plateNo, Technician technician) {
+        super(String.format("S2%03d",++ID),serviceDesc,appointment, plateNo, technician, 100.00);
     }   //Constructor with customer desc
 
     @Override
     public String toString() {
-        return super.toString() + '\n' +
-                "servicePrice = " + servicePrice + '\n';
+        return super.toString() + '\n';
     }
-    
-    public double calcPrice() {
-		
-    	return servicePrice;
-	}
 }
 

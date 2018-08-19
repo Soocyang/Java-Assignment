@@ -12,10 +12,11 @@ public class FirstChoiceCarServices {
         try {
             Customers.readFile(customers);
             Technician.readFile(technician);
-            Appointment.readFile(appointment, customers);
-            //Services.readFile(services, appointment, technician);
+            Appointment.readFile(appointment, customers); //TODO fix appointment file
+            Services.readFile(services, appointment, technician);
 
             Appointment.newAppointment(appointment, customers);
+            Services.newServices(services, appointment, technician);
 
         } catch (IOException e) {
             e.printStackTrace();

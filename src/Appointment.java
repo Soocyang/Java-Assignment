@@ -19,6 +19,10 @@ public class Appointment {
         this.preferService = preferService;
     }
 
+    public Customers getCustomers() {
+        return this.customer;
+    }
+
     @Override
     public String toString() {
         String[] service = {"Maintenance", "Repair", "Repaint", "Wax and Polish"};
@@ -84,5 +88,4 @@ public class Appointment {
         }
         br.close();
     }
-
 }
