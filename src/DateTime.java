@@ -4,8 +4,7 @@ import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public class DateTime {
-	private static String[] dayOfWeek = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-			"Saturday" };
+	private static String[] dayOfWeek = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
 	private int day;
 	private int month;
 	private int year;
@@ -32,16 +31,27 @@ public class DateTime {
 		return minute;
 	}
 
+	public String toFile() {
+		return day + "," + month + "," + year + "," + hour + "," + minute;
+	}
+
 	@Override
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy, h:mm a");
 		Calendar calendar = new GregorianCalendar(year, month - 1, day, hour, minute);
 
-		return String.format("%s %s", dayOfWeek[calendar.get(Calendar.DAY_OF_WEEK) - 1],
+		return String.format("%s %s",
+				dayOfWeek[calendar.get(Calendar.DAY_OF_WEEK) - 1],
 				sdf.format(calendar.getTime()));
 	}
 
 	static DateTime newDateTime(){
+		SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+		Calendar calendar = Calendar.getInstance();
+		System.out.printf("Today is %s,%s",
+				dayOfWeek[calendar.get(Calendar.DAY_OF_WEEK) - 1],
+				sdf.format(calendar.getTime()));
+
 		Scanner sc = new Scanner(System.in);
 		// Prompt User Input Date and Time they wish to service car
 		System.out.println();
@@ -60,10 +70,6 @@ public class DateTime {
 	}
 
 	public boolean IsNationalDay() {
-		if (this.day == 31 && this.month == 8) {
-			return true;
-		} else {
-			return false;
-		}
+		return this.day == 31 && this.month == 8;
 	}
 }

@@ -52,7 +52,7 @@ public class Customers {
         BufferedReader br = new BufferedReader(new FileReader("data/customerInfo.csv"));
         String string;
         Scanner sc;
-        int i = 0;
+        int i = 0; //can remove later, for display purposes
         while ((string = br.readLine()) != null) {
             sc = new Scanner(string).useDelimiter("\\s*,\\s*");
             sc.next(); //Ignoring the first field which contains customerID.
