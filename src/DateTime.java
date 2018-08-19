@@ -1,6 +1,7 @@
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Scanner;
 
 public class DateTime {
 	private static String[] dayOfWeek = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
@@ -38,6 +39,24 @@ public class DateTime {
 
 		return String.format("%s %s", dayOfWeek[calendar.get(Calendar.DAY_OF_WEEK) - 1],
 				sdf.format(calendar.getTime()));
+	}
+
+	static DateTime newDateTime(){
+		Scanner sc = new Scanner(System.in);
+		// Prompt User Input Date and Time they wish to service car
+		System.out.println();
+		System.out.print("Enter date       : ");
+		int day = sc.nextInt();
+		System.out.print("Enter month      : ");
+		int month = sc.nextInt();
+		System.out.print("Enter year       : ");
+		int year = sc.nextInt();
+		System.out.print("Enter hour       : ");
+		int hour = sc.nextInt();
+		System.out.print("Enter minutes    : ");
+		int minutes = sc.nextInt();
+
+		return new DateTime(day,month,year,hour,minutes);
 	}
 
 	public boolean IsNationalDay() {
