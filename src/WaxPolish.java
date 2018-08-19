@@ -17,7 +17,7 @@ public class WaxPolish extends Services{
     
     public double calcPrice() {
 		
-    	if(super.getCustomers().getNoOfWP()>=5 && super.getCustomers().getNoOfWP()<=7) {
+    	if(super.getAppointment().getCustomer().getNoOfWP()>=5 && super.getAppointment().getCustomer().getNoOfWP()<=7) {
     		this.servicePrice = servicePrice - (servicePrice*0.1) ;
     		
     	}

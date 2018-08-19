@@ -26,6 +26,10 @@ public abstract class Services {
 		return customers;
 	}
 	
+	public Appointment getAppointment() {
+		return appointment;
+	}
+	
 
 	public abstract double calcPrice();
 
