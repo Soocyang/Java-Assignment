@@ -14,8 +14,8 @@ public class Appointment {
 
     @Override
     public String toString() {
-        return  customer + "\n" +
-                "Date & Time = " + dateTime + "\n" +
-                "preferred Service = " + preferService + "\n";
+        return  customer +
+                "Date & Time            = " + dateTime  + "\n" +
+                "Preferred Service      = " + preferService + "\n";
     }
 }

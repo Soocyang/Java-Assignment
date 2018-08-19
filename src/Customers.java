@@ -1,5 +1,5 @@
 public class Customers {
-    private static int customerID = 1000; //Auto Generated, increment by one
+    private static int customerID = 0; //Auto Generated, increment by one
     private Name customerName;
     private String contactNo;
     private int noOfWP;
@@ -32,14 +32,14 @@ public class Customers {
     }
 
     public String toFile() {
-        return customerID + "," + customerName + "," + contactNo + "," + noOfWP;
+        return String.format("%04d,%s,%s,%d\n",customerID,customerName,contactNo,noOfWP);
     }
 
     @Override
     public String toString() {
-        return "customer ID = " + customerID +'\n' +
-                "customerName = " + customerName +'\n' +
-                "contactNo   = " + contactNo + '\n' +
+        return String.format("Customer ID            = C%04d\n",customerID) +
+                "Customer Name          = " + customerName +'\n' +
+                "Customer Contact       = " + contactNo + '\n' +
                 "Number of Wax & Polish = " + noOfWP +'\n';
     }
 }

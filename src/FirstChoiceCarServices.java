@@ -3,43 +3,36 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FirstChoiceCarServices {
-	public static void main(String[] args) {
-
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         try {
             ArrayList<Customers> customers = readCustomerInfo();
+            System.out.print("The next customer ID starts from : " + Customers.getCustomerID());
+            newAppointment(customers);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        System.out.print("The next customer ID starts from : " + Customers.getCustomerID());
-		try {
-			newAppointment();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
     }
 
-	private static void newAppointment() throws IOException {
-		Customers customers;
+	private static void newAppointment(ArrayList<Customers> customers) throws IOException {
         PreService preService;
 		DateTime dateTime = newDateTime(); //Get Time&Date
         Scanner sc = new Scanner(System.in);
-        int in;
+        int custIndex;
+        int userInput;
 
         do { //Get CustomerInfo
             System.out.print("Is this your first time visiting 'First Choice Car Services'?\n" +
                     "1. Yes\n" +
                     "2. No\n");
-            in = sc.nextInt();
-        }while(in != 1 && in != 2);
+            userInput = sc.nextInt();
+        }while(userInput != 1 && userInput != 2);
 
-		// if (in == 1) //Yes, new customer
-            customers = newCustomer();
-        // else //No, returning customer
-            //customers = findCustomer(); //TODO find customer here
+        if (userInput == 1) //Yes, new customer
+            custIndex = newCustomer(customers);
+        else //No, returning customer
+            custIndex = findCustomer(customers);
 
         do { //Get Preferred Service
             System.out.print("What is your preferred service?\n"+
@@ -47,67 +40,77 @@ public class FirstChoiceCarServices {
                     "2. Repair\n"+
                     "3. Repaint\n"+
                     "4. Wax and Polish\n"+
-                    "Enter index 1~4 : "
+                    "Enter index 1~4  : "
             );
-            in = sc.nextInt();
-        }while(in < 1 || in > 4);
+            userInput = sc.nextInt();
+        }while(userInput < 1 || userInput > 4);
 
-        Appointment appointment = new Appointment(customers, dateTime, in);
-        System.out.print(appointment.toString());
+        Appointment appointment = new Appointment(customers.get(custIndex), dateTime, userInput);
+        System.out.print(appointment);
 	}
 
     private static DateTime newDateTime(){
         Scanner sc = new Scanner(System.in);
         // Prompt User Input Date and Time they wish to service car
         System.out.println();
-        System.out.print("Enter date : ");
+        System.out.print("Enter date       : ");
         int day = sc.nextInt();
-        System.out.print("Enter month : ");
+        System.out.print("Enter month      : ");
         int month = sc.nextInt();
-        System.out.print("Enter year : ");
+        System.out.print("Enter year       : ");
         int year = sc.nextInt();
-        System.out.print("Enter hour : ");
+        System.out.print("Enter hour       : ");
         int hour = sc.nextInt();
-        System.out.print("Enter minutes : ");
+        System.out.print("Enter minutes    : ");
         int minutes = sc.nextInt();
 
         return new DateTime(day,month,year,hour,minutes);
     }
 
-    private static Customers newCustomer(){
+    private static int newCustomer(ArrayList<Customers> customers){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter first name : ");
         String firstName = sc.next();
-        System.out.print("Enter last last : ");
+        System.out.print("Enter last last  : ");
         String lastName = sc.next();
-        System.out.print("Enter contact : ");
+        System.out.print("Enter contact no : ");
         String contact = sc.next();
 
-        Customers customers = new Customers(new Name(firstName, lastName),contact, 0);
+        customers.add(new Customers(new Name(firstName, lastName),contact, 0));
+        int lastIndex = customers.size()-1;
         try {
-            appendCustomerInfo(customers);
+            appendCustomerInfo(customers.get(lastIndex));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return customers;
+        return lastIndex;
     }
 
-    private static Customers findCustomer(){
+    private static int findCustomer(ArrayList<Customers> customers){
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter contact : ");
-        String contact = sc.next();
-
-        //find customer using their phone number?
-
-        return new Customers(new Name("0","0"),"0",0);
+        String contact;
+        int in, index;
+        do {
+            System.out.print("Enter contact : ");
+            contact = sc.next();
+            for(int i = 0;i < customers.size(); i++){
+                if(customers.get(i).getContactNo().equals(contact)){
+                    System.out.print(customers.get(i).toString());
+                    index = i;
+                    return index;
+                }
+            }
+            System.out.print("Customer record not found, do you want to try again?\n" +
+                    "1. Yes\n" +
+                    "2. No\n");
+            in = sc.nextInt();
+        }while(in == 1);
+        return newCustomer(customers);
     }
 
 	static void appendCustomerInfo(Customers customers) throws IOException {
-        BufferedWriter  bw = new BufferedWriter(new FileWriter("data/customerInfoOut.csv", true));
-
-		bw.write(customers.toFile()+'\n');
-
+        BufferedWriter  bw = new BufferedWriter(new FileWriter("data/customerInfo.csv", true));
+		bw.write(customers.toFile());
 		bw.close();
 	}
 
@@ -116,11 +119,10 @@ public class FirstChoiceCarServices {
 		String string;
 		Scanner sc;
 		int i = 0;
-//		Customers[] customers = new Customers[100];
 		ArrayList<Customers> customers = new ArrayList<>();
         while ((string = br.readLine()) != null) {
 			sc = new Scanner(string).useDelimiter("\\s*,\\s*");
-            sc.next();
+            sc.next(); //Ignoring the first field which contains customerID.
 			customers.add(new Customers(new Name(sc.next(), sc.next()), sc.next(), sc.nextInt()));
 			System.out.println(customers.get(i).toString());
 			i++;
