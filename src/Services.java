@@ -9,6 +9,8 @@ public class Services {
 	}
 
     public Services(Appointment appointment, Customers customers, String plateNo, Technician technician) {
+        transactionCode++;
+	    serviceID++;
         this.appointment = appointment;
         this.customers = customers;
         this.plateNo = plateNo;

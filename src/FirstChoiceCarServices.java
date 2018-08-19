@@ -1,10 +1,18 @@
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FirstChoiceCarServices {
 	public static void main(String[] args) {
 
-		getCustomerInfo();
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            Customers[] customers = readCustomerInfo();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         System.out.print("The next customer ID starts from : " + Customers.getCustomerID());
 		try {
 			newAppointment();
@@ -95,15 +103,6 @@ public class FirstChoiceCarServices {
         return new Customers(new Name("0","0"),"0",0);
     }
 
-    public static void getCustomerInfo() {
-		Scanner sc = new Scanner(System.in);
-		try {
-			Customers[] customers = readCustomerInfo();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	static void appendCustomerInfo(Customers customers) throws IOException {
         BufferedWriter  bw = new BufferedWriter(new FileWriter("data/customerInfoOut.csv", true));
 
@@ -117,12 +116,13 @@ public class FirstChoiceCarServices {
 		String string;
 		Scanner sc;
 		int i = 0;
-		Customers[] customers = new Customers[100];
-		while ((string = br.readLine()) != null) {
+//		Customers[] customers = new Customers[100];
+		ArrayList<Customers> customers = new ArrayList<>();
+        while ((string = br.readLine()) != null) {
 			sc = new Scanner(string).useDelimiter("\\s*,\\s*");
             sc.next();
-			customers[i] = new Customers(new Name(sc.next(), sc.next()), sc.next(), sc.nextInt());
-			System.out.println(customers[i].toString());
+			customers.add(new Customers(new Name(sc.next(), sc.next()), sc.next(), sc.nextInt()));
+			System.out.println(customers.get().toString());
 			i++;
 		}
 		br.close();
