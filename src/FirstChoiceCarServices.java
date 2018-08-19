@@ -1,6 +1,5 @@
-import java.io.*;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class FirstChoiceCarServices {
     public static void main(String[] args) {

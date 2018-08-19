@@ -16,18 +16,6 @@ public class Technician {
         this.serviceHandle = serviceHandle;
     }
 
-    public String toFile() {
-        return technicianID + "," + technicianName.toFile() + "," + serviceHandle + "\n";
-    }
-
-    @Override
-    public String toString() {
-        String[] service = {"Maintenance", "Repair", "Repaint", "Wax and Polish"};
-        return "Technician ID          = " + technicianID + '\n' +
-                "Technician Name        = " + technicianName + '\n' +
-                "Service Handle         = " + service[serviceHandle - 1] + '\n';
-    }
-
     static void readFile(ArrayList<Technician> technician) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("data/technicianInfo.csv"));
         String string;
@@ -38,6 +26,18 @@ public class Technician {
             technician.add(new Technician(new Name(sc.next(), sc.next()), sc.nextInt()));
         }
         br.close();
+    }
+
+    public String toFile() {
+        return technicianID + "," + technicianName.toFile() + "," + serviceHandle + "\n";
+    }
+
+    @Override
+    public String toString() {
+        String[] service = {"Maintenance", "Repair", "Repaint", "Wax and Polish"};
+        return "Technician ID          = " + technicianID + '\n' +
+                "Technician Name        = " + technicianName + '\n' +
+                "Service Handle         = " + service[serviceHandle - 1] + '\n';
     }
 
     public int getServiceHandle() {

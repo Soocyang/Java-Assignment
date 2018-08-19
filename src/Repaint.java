@@ -1,8 +1,8 @@
-public class Repaint extends Services{
+public class Repaint extends Services {
     private static int ID = 0; //Increment by one
 
     public Repaint(Appointment appointment, String plateNo, Technician technician, String serviceDesc) {
-        super(String.format("S1%03d",++ID),appointment, plateNo, technician,serviceDesc, 150.00);
+        super(String.format("S1%03d", ++ID), appointment, plateNo, technician, serviceDesc, 150.00);
     }   //Constructor with customer desc
 
     @Override
