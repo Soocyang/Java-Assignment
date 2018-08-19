@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.lang.reflect.AnnotatedArrayType;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,18 +16,15 @@ public class Appointment {
         this.preferService = preferService;
     }
 
-    public String toFile() {
-        return customer.getCustomerID() + "," + dateTime.toFile() + "," + preferService + "\n";
-    }
-
     @Override
     public String toString() {
+        String[] service = {"Maintenance", "Repair", "Repaint", "Wax and Polish"};
         return  customer +
                 "Date & Time            = " + dateTime  + "\n" +
-                "Preferred Service      = " + preferService + "\n";
+                "Prefer Service         = " + service[preferService-1] + "\n";
     }
 
-    static void newAppointment(ArrayList<Customers> customers) throws IOException {
+    static void newAppointment(ArrayList<Appointment> appointment, ArrayList<Customers> customers) throws IOException {
 
 
         DateTime dateTime = DateTime.newDateTime(); //Get Time&Date
@@ -61,8 +55,15 @@ public class Appointment {
             userInput = sc.nextInt();
         }while(userInput < 1 || userInput > 4);
 
-        Appointment appointment = new Appointment(customers.get(custIndex), dateTime, userInput);
-        System.out.print(appointment);
+        appointment.add(new Appointment(customers.get(custIndex), dateTime, userInput));
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter("data/appointmentInfo.csv", true));
+            bw.write(custIndex+1 + "," + dateTime.toFile() + "," + userInput + "\n");
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(appointment.get(appointment.size()-1));
     }
 
     static void readFile(ArrayList<Appointment> appointment, ArrayList<Customers> customers) throws IOException {
