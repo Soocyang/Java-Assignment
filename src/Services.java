@@ -32,7 +32,7 @@ public abstract class Services {
         boolean loop = true;
 
         do { //Get CustomerInfo
-            System.out.print("Please enter appointment number : \n");
+            System.out.print("Please enter appointment ID : ");
             userInput = sc.nextInt();
             if (userInput < 0 || userInput >= appointment.size()) {
                 System.out.print("Value out of range or invalid, please try again.");
@@ -40,9 +40,10 @@ public abstract class Services {
                 appointmentIndex = userInput - 1;
                 do {
                     System.out.print(appointment.get(appointmentIndex) +
-                            "Continue service with above appointment?\n" +
+                            "\nContinue service with above appointment?\n" +
                             "1. Yes\n" +
                             "2. No\n");
+                    System.out.print("Choice :");
                     userInput = sc.nextInt();
                 } while (userInput != 1 && userInput != 2);
                 if (userInput == 1)
@@ -57,7 +58,7 @@ public abstract class Services {
                 if (serviceType == technician.get(i).getServiceHandle())
                     System.out.print(technician.get(i));
             }
-            System.out.print("Please select a technician for the service.\n" +
+            System.out.print("\nPlease select a technician form above for the service.\n" +
                     "Enter technician's ID : T");
             userInput = sc.nextInt();
             if (userInput < 0 || userInput >= technician.size()) {
@@ -66,9 +67,10 @@ public abstract class Services {
                 technicianIndex = userInput - 1;
                 do {
                     System.out.print(technician.get(technicianIndex) +
-                            "Continue appointment with above technician?\n" +
+                            "\nContinue appointment with above technician?\n" +
                             "1. Yes\n" +
                             "2. No\n");
+                    System.out.print("Choice: ");
                     userInput = sc.nextInt();
                 } while (userInput != 1 && userInput != 2);
                 if (userInput == 1)
@@ -76,7 +78,7 @@ public abstract class Services {
             }
         } while (loop);
 
-        System.out.print("Get Plate Number : ");
+        System.out.print("\nGet Plate Number : ");
         plateNo = sc.next();
 
         System.out.print("Enter service description : ");

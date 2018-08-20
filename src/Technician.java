@@ -34,8 +34,6 @@ public class Technician {
         BufferedReader br = new BufferedReader(new FileReader("data/servicesInfo.csv"));
         String string;
         Scanner sc;
-        
-
         int i = 0;
         while ((string = br.readLine()) != null) {
             sc = new Scanner(string).useDelimiter("\\s*,\\s*");
@@ -57,7 +55,7 @@ public class Technician {
     @Override
     public String toString() {
         String[] service = {"Maintenance", "Repair", "Repaint", "Wax and Polish"};
-        return "Technician ID          = " + technicianID + '\n' +
+        return "\nTechnician ID          = " + technicianID + '\n' +
                 "Technician Name        = " + technicianName + '\n' +
                 "Service Handle         = " + service[serviceHandle - 1] + '\n';
     }

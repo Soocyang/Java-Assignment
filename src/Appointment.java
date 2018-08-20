@@ -38,7 +38,7 @@ public class Appointment {
             custIndex = Customers.findCustomer(customers);
 
         do { //Get Preferred Service
-            System.out.print("What is your preferred service?\n" +
+            System.out.print("\nWhat is your preferred service?\n" +
                     "1. Maintenance\n" +
                     "2. Repair\n" +
                     "3. Repaint\n" +
@@ -102,7 +102,7 @@ public class Appointment {
     @Override
     public String toString() {
         String[] service = {"Maintenance", "Repair", "Repaint", "Wax and Polish"};
-        return "Appointment ID         = " + appointmentID + "\n" +
+        return "\nAppointment ID         = " + appointmentID + "\n" +
                 customer +
                 "Date & Time            = " + dateTime + "\n" +
                 "Prefer Service         = " + service[preferService - 1] + "\n";

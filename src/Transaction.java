@@ -23,7 +23,7 @@ public class Transaction {
         int servicesIndex = -1;
         boolean loop = true;
         do {
-            System.out.print("Enter service code : ");
+            System.out.print("Enter service code (S9999) : ");
             servicesInput = sc.next();
             for (int i = 0; i < services.size(); i++) {
                 if (servicesInput.equals(services.get(i).getServiceID())) {
@@ -33,6 +33,7 @@ public class Transaction {
                                 "Continue transaction with above service?\n" +
                                 "1. Yes\n" +
                                 "2. No\n");
+                        System.out.print("Choice: ");
                         userInput = sc.nextInt();
                     } while (userInput != 1 && userInput != 2);
                     if (userInput == 1)
@@ -59,8 +60,8 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction ID         = " + transactionID + '\n' +
+        return "\nTransaction ID         = " + transactionID + '\n' +
                 service +
-                "Total Bill             = " + totalBill + '\n';
+                "Total Bill             = " + totalBill + '\n' + '\n' ;
     }
 }
