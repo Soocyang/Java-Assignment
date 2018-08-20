@@ -17,28 +17,62 @@ public class FirstChoiceCarServices {
 			Services.readFile(services, appointment, technician);
 
 			int selection = menu();
+			Scanner sc = new Scanner(System.in);
 			do {
 
 				if (selection == 1) {
-					System.out.println("\n--------- Registration for New Service ---------\n");
-					System.out.println("Please enter the details of the new service ...");
-					// For registration
-					
-					Appointment.newAppointment(appointment, customers);
-					Services.newServices(services, appointment, technician);
-					Transaction.newTransaction(transaction, services);
-					// Use S3001 to test discount.
-					
-					
+					do {
+						System.out.print("--------- Registration for New Service ---------\n" +
+								"1. New appointment\n" +
+								"2. New service\n" +
+								"3. New transaction\n" +
+								"0. Return\n");
+						System.out.print("Enter your choice : ");
+						selection = sc.nextInt();
+					}while(selection < 0 || selection > 3);
+
+					if (selection == 1)
+						Appointment.newAppointment(appointment, customers);
+					else if (selection == 2)
+						Services.newServices(services, appointment, technician);
+					else if (selection == 3)
+						Transaction.newTransaction(transaction, services); // Use S3001 to test discount.
+					//else //Return
+
 				} else if (selection == 2) {
-					System.out.println("\n--------- View Transaction History ---------\n");
-					System.out.println("Enter the car registration number to search for the transaction");
-					
-					
-					
+					System.out.println("\n--------- View Service History ---------\n");
+					System.out.println("Enter the car registration number to search for the service history.\n" +
+							"Car Plate No : ");
+					String carPlate = sc.next();
+					int found =0;
+					for (int i = 0; i < services.size(); i++)
+					{
+						if(carPlate.equals(services.get(i).getPlateNo())){
+							System.out.print(services.get(i));
+							found++;
+						}
+					}
+					if (found == 0)
+						System.out.print("No record for " + carPlate + " found.");
+					else
+						System.out.print("Found " + found + " record(s)");
 				} else if (selection == 3) {
-					System.out.println("\n--------- View Appointment Records ---------\n");
-					
+					System.out.println("\n--------- View Appointment History ---------\n");
+					System.out.println("Enter the car registration number to search for the service history.\n" +
+							"Car Plate No : ");
+					String carPlate = sc.next();
+					int found =0;
+					for (int i = 0; i < services.size(); i++)
+					{
+						if(carPlate.equals(services.get(i).getPlateNo())){
+							System.out.print(services.get(i));
+							found++;
+						}
+					}
+					if (found == 0)
+						System.out.print("No record for " + carPlate + " found.");
+					else
+						System.out.print("Found " + found + " record(s)");
 					
 					
 				} else if (selection == 4) {
@@ -63,13 +97,17 @@ public class FirstChoiceCarServices {
 	public static int menu() {
 		Scanner sc = new Scanner(System.in);
 		int choice;
-
-		System.out.print("Welcome to First Choice Car Service Center\n" + "------------------------------------------\n"
-				+ "1. Register new services\n" + "2. View Transaction History\n" + "3. View Appointment Records\n"
-				+ "4. View Technician Records\n" + "0. Exit\n");
-		System.out.print("Enter your choice : ");
-		choice = sc.nextInt();
-
+		do {
+			System.out.print("Welcome to First Choice Car Service Center\n" + "------------------------------------------\n" +
+					"1. Register new services\n" +
+					"2. View Transaction History\n" +
+					"3. View Appointment Records\n" +
+					"4. View Technician Records\n" +
+					"0. Exit\n");
+			System.out.print("Enter your choice : ");
+			choice = sc.nextInt();
+		}while(choice < 0 || choice > 4);
+		sc.close();
 		return choice;
 	}
 

@@ -36,8 +36,8 @@ public class Transaction {
                         userInput = sc.nextInt();
                     } while (userInput != 1 && userInput != 2);
                     if (userInput == 1)
-                        loop = false;
-                    i = services.size();
+                        loop = false; //Terminate the while loop
+                    i = services.size(); //Terminate the for loop
                 }
             }
         } while (loop);
@@ -47,14 +47,13 @@ public class Transaction {
 
     private double calcDiscountPrivileges() {
         double servicePrice = service.getServicePrice();
-        if (service.appointment.getCustomers().getNoOfWP() == 10) {
-            return 0.00;
-        } else if (service.appointment.getCustomers().getNoOfWP() >= 8) {
-            return servicePrice * 0.7;
-        } else if (service.appointment.getCustomers().getNoOfWP() >= 5) {
-            return servicePrice * 0.9;
-        }
-        return servicePrice;
+        if (service.appointment.getCustomers().getNoOfWP() == 10)
+            return 0.00; //Free
+        else if (service.appointment.getCustomers().getNoOfWP() >= 8)
+            return servicePrice * 0.7;  //Discount 30%
+        else if (service.appointment.getCustomers().getNoOfWP() >= 5)
+            return servicePrice * 0.9;  //Discount 10%
+        return servicePrice; //Normal Price
     }
 
     @Override

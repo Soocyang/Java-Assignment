@@ -72,7 +72,7 @@ public abstract class Services {
                     userInput = sc.nextInt();
                 } while (userInput != 1 && userInput != 2);
                 if (userInput == 1)
-                    loop = false;
+                    loop = false; //Terminate the while loop
             }
         } while (loop);
 
@@ -154,5 +154,9 @@ public abstract class Services {
 
     double getServicePrice() {
         return servicePrice;
+    }
+
+    public String getPlateNo() {
+        return plateNo;
     }
 }
