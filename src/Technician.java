@@ -28,6 +28,28 @@ public class Technician {
         br.close();
     }
 
+
+    
+    static void displayFile(ArrayList<Technician> technician) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader("data/servicesInfo.csv"));
+        String string;
+        Scanner sc;
+        
+
+        int i = 0;
+        while ((string = br.readLine()) != null) {
+            sc = new Scanner(string).useDelimiter("\\s*,\\s*");
+            sc.next(); //Ignoring the first field which contains TechnicianID.
+            technician.add(new Technician(new Name(sc.next() , sc.next()), sc.nextInt()));
+
+            System.out.print(technician.get(i));
+            System.out.print("\n");
+            i++;
+        }
+        br.close();
+    }
+    
+
     public String toFile() {
         return technicianID + "," + technicianName.toFile() + "," + serviceHandle + "\n";
     }

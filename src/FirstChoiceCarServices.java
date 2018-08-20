@@ -17,7 +17,7 @@ public class FirstChoiceCarServices {
 			Services.readFile(services, appointment, technician);
 
 			int selection = menu();
-			do {
+			while(selection !=0) {
 
 				if (selection == 1) {
 					System.out.println("\n--------- Registration for New Service ---------\n");
@@ -31,25 +31,19 @@ public class FirstChoiceCarServices {
 					
 					
 				} else if (selection == 2) {
-					System.out.println("\n--------- View Transaction History ---------\n");
-					System.out.println("Enter the car registration number to search for the transaction");
-					
+					System.out.println("\n--------- View Appointment Records ---------\n");
+					Appointment.displayFile(appointment, customers);
 					
 					
 				} else if (selection == 3) {
-					System.out.println("\n--------- View Appointment Records ---------\n");
-					
-					
-					
-				} else if (selection == 4) {
 					System.out.println("\n--------- View Technician Records ---------\n");
 					
-					
+					Technician.displayFile(technician);
 					
 				}
 				
 				selection = menu();
-			} while (selection != 0);
+			}
 
 			
 			
@@ -65,8 +59,7 @@ public class FirstChoiceCarServices {
 		int choice;
 
 		System.out.print("Welcome to First Choice Car Service Center\n" + "------------------------------------------\n"
-				+ "1. Register new services\n" + "2. View Transaction History\n" + "3. View Appointment Records\n"
-				+ "4. View Technician Records\n" + "0. Exit\n");
+				+ "1. Register new services\n" + "2. View Appointment Records\n" + "3. View Technician Records\n"  + "0. Exit\n");
 		System.out.print("Enter your choice : ");
 		choice = sc.nextInt();
 

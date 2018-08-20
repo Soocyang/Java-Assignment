@@ -73,6 +73,27 @@ public class Appointment {
         }
         br.close();
     }
+    
+    static void displayFile(ArrayList<Appointment> appointment, ArrayList<Customers> customers) throws IOException {
+    	BufferedReader br = new BufferedReader(new FileReader("data/appointmentInfo.csv"));
+        String string;
+        Scanner sc;
+
+        int i = 0;
+        while ((string = br.readLine()) != null) {
+            sc = new Scanner(string).useDelimiter("\\s*,\\s*");
+            sc.next(); //Ignoring the first field which contains TechnicianID.
+            appointment.add(new Appointment(
+                    customers.get(sc.nextInt() - 1),
+                    new DateTime(sc.nextInt(), sc.nextInt(), sc.nextInt(), sc.nextInt(), sc.nextInt()),
+                    sc.nextInt()));
+
+            System.out.print(appointment.get(i));
+            System.out.print("\n");
+            i++;
+        }
+        br.close();
+    }
 
     public Customers getCustomers() {
         return this.customer;
